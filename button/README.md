@@ -32,4 +32,4 @@ In this code, we write a code that read the GPIOA pin, if the pin is set, we tur
 After click on the resume when we press the button, we see all the led will turn on as shown in the image below
 
 
-![stm32F407VGT6](https://github.com/Theara-Seng/stm32_lab/blob/main/button/image/button_press.png)
+![stm32F407VGT6](https://github.com/Theara-Seng/stm32_lab/blob/main/button/image/button_press.jpg)
