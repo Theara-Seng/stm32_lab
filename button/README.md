@@ -6,3 +6,4 @@ we configure the same concept as the led as last lesson but we need to change th
 the led will turn off
 
 
+![stm32F407VGT6](https://github.com/Theara-Seng/stm32_lab/blob/main/button/image/input_gpio.png)
