@@ -60,5 +60,20 @@ We also can use the togglePin to blink the led every 1 second with the code belo
   HAL_Delay(1000);
 ```
 
-After writing the code, we need to build the project and click on the debug as shown in the image below
+After writing the code, we need to build the project and if there is no error message, then we can click on the debug as shown in the image below
 
+![stm32F407VGT6](https://github.com/Theara-Seng/stm32_lab/blob/main/led/image/build.png)
+
+
+After that we need to click on the resume
+
+![stm32F407VGT6](https://github.com/Theara-Seng/stm32_lab/blob/main/led/image/resume.png)
+
+
+After that we can see the led light up for 1 second 
+
+![stm32F407VGT6](https://github.com/Theara-Seng/stm32_lab/blob/main/led/image/high.jpg)
+
+and then turn off for 1 second 
+
+![stm32F407VGT6](https://github.com/Theara-Seng/stm32_lab/blob/main/led/image/low.jpg)
