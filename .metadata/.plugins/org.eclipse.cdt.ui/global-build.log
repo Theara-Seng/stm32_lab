@@ -1,4 +1,4 @@
-12:01:23 **** Incremental Build of configuration Debug for project button ****
+12:12:05 **** Incremental Build of configuration Debug for project button ****
 make -j20 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../USB_HOST/App -I../USB_HOST/Target -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Host_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Host_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc -o "button.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/theara/Teaching/stm32_lab/button/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="button.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
@@ -7,15 +7,22 @@ Finished building target: button.elf
 arm-none-eabi-size   button.elf 
 arm-none-eabi-objdump -h -S  button.elf  > "button.list"
    text	   data	    bss	    dec	    hex	filename
-  31924	    152	   3592	  35668	   8b54	button.elf
+  31996	    152	   3592	  35740	   8b9c	button.elf
 Finished building: default.size.stdout
  
 Finished building: button.list
  
-12:01:26 **** Incremental Build of configuration Debug for project button ****
+12:12:09 **** Incremental Build of configuration Debug for project button ****
 make -j20 all 
 arm-none-eabi-size   button.elf 
    text	   data	    bss	    dec	    hex	filename
-  31924	    152	   3592	  35668	   8b54	button.elf
+  31996	    152	   3592	  35740	   8b9c	button.elf
+Finished building: default.size.stdout
+ 
+12:13:08 **** Incremental Build of configuration Debug for project button ****
+make -j20 all 
+arm-none-eabi-size   button.elf 
+   text	   data	    bss	    dec	    hex	filename
+  31996	    152	   3592	  35740	   8b9c	button.elf
 Finished building: default.size.stdout
  
