@@ -19,7 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "usb_host.h"
-
+#include <stdio.h>
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -121,7 +121,7 @@ int main(void)
     MX_USB_HOST_Process();
     printf("Hello World->");
     HAL_Delay(1000);
-    printf("integer = %d",msg);
+    printf("integer = %d->",msg);
     HAL_Delay(1000);
     printf("float= %f\n", f);
     HAL_Delay(1000);

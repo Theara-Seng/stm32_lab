@@ -29,23 +29,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  12 .ARM.attributes 00000030  00000000  00000000  000201fc  2**0
                   CONTENTS, READONLY
- 13 .debug_info   00019698  00000000  00000000  0002022c  2**0
+ 13 .debug_info   00019693  00000000  00000000  0002022c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 00003bef  00000000  00000000  000398c4  2**0
+ 14 .debug_abbrev 00003bf3  00000000  00000000  000398bf  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  15 .debug_aranges 000013d8  00000000  00000000  0003d4b8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
  16 .debug_ranges 00001278  00000000  00000000  0003e890  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  000250c9  00000000  00000000  0003fb08  2**0
+ 17 .debug_macro  00025228  00000000  00000000  0003fb08  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0001a3da  00000000  00000000  00064bd1  2**0
+ 18 .debug_line   0001a5a1  00000000  00000000  00064d30  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000cec5b  00000000  00000000  0007efab  2**0
+ 19 .debug_str    000cec5b  00000000  00000000  0007f2d1  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000050  00000000  00000000  0014dc06  2**0
+ 20 .comment      00000050  00000000  00000000  0014df2c  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  000063b4  00000000  00000000  0014dc58  2**2
+ 21 .debug_frame  000063b4  00000000  00000000  0014df7c  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -1301,7 +1301,7 @@ int main(void)
     HAL_Delay(1000);
  8000f0c:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
  8000f10:	f000 fd56 	bl	80019c0 <HAL_Delay>
-    printf("integer = %d",msg);
+    printf("integer = %d->",msg);
  8000f14:	79fb      	ldrb	r3, [r7, #7]
  8000f16:	4619      	mov	r1, r3
  8000f18:	480b      	ldr	r0, [pc, #44]	; (8000f48 <main+0x74>)
@@ -1319,7 +1319,7 @@ int main(void)
     HAL_Delay(1000);
  8000f36:	f44f 707a 	mov.w	r0, #1000	; 0x3e8
  8000f3a:	f000 fd41 	bl	80019c0 <HAL_Delay>
-  {
+    MX_USB_HOST_Process();
  8000f3e:	e7e0      	b.n	8000f02 <main+0x2e>
  8000f40:	3f9eb852 	.word	0x3f9eb852
  8000f44:	0800b858 	.word	0x0800b858
