@@ -1,21 +1,34 @@
-15:27:06 **** Incremental Build of configuration Debug for project button_interrupt ****
+19:45:14 **** Incremental Build of configuration Debug for project encoder_mode ****
 make -j20 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../USB_HOST/App -I../USB_HOST/Target -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Host_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Host_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "button_interrupt.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/theara/Teaching/stm32_lab/button_interrupt/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="button_interrupt.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: button_interrupt.elf
+../Core/Src/main.c: In function '_write':
+../Core/Src/main.c:78:29: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+   78 |  HAL_UART_Transmit(&huart2, p, len, 10);
+      |                             ^
+      |                             |
+      |                             char *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:406,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:722:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+  722 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+arm-none-eabi-gcc -o "encoder_mode.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/theara/Teaching/stm32_lab/encoder_mode/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_mode.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_mode.elf
  
-arm-none-eabi-size   button_interrupt.elf 
-arm-none-eabi-objdump -h -S  button_interrupt.elf  > "button_interrupt.list"
+arm-none-eabi-size   encoder_mode.elf 
+arm-none-eabi-objdump -h -S  encoder_mode.elf  > "encoder_mode.list"
    text	   data	    bss	    dec	    hex	filename
-  32032	    152	   3592	  35776	   8bc0	button_interrupt.elf
+  40696	    152	   3808	  44656	   ae70	encoder_mode.elf
 Finished building: default.size.stdout
  
-Finished building: button_interrupt.list
+Finished building: encoder_mode.list
  
-15:27:13 **** Incremental Build of configuration Debug for project button_interrupt ****
+19:45:16 **** Incremental Build of configuration Debug for project encoder_mode ****
 make -j20 all 
-arm-none-eabi-size   button_interrupt.elf 
+arm-none-eabi-size   encoder_mode.elf 
    text	   data	    bss	    dec	    hex	filename
-  32032	    152	   3592	  35776	   8bc0	button_interrupt.elf
+  40696	    152	   3808	  44656	   ae70	encoder_mode.elf
 Finished building: default.size.stdout
  
