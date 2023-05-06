@@ -35,3 +35,47 @@ In this, we will use USART2 for transmit the data from the stm32 to the computer
 
 
 ![stm32F407VGT6](https://github.com/Theara-Seng/stm32_lab/blob/main/usart_polling/image/usb_to_ttl.jpg)
+
+
+Then we need to enable the USART2 in the stm32 configuration and also set it to Asynchronous and see the pin of the USART2 as shown in the image below 
+
+
+
+![stm32F407VGT6](https://github.com/Theara-Seng/stm32_lab/blob/main/usart_polling/image/usart2.png)
+
+## Coding 
+
+We want to transmit the **helloworld** from stm32 to the computer through serial communication, so in this case we will use a HAL Library Function of stm32
+
+```sh
+HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+```
+
+And if we want to receive from the computer, we can use
+
+```sh
+HAL_StatusTypeDef HAL_UART_Receive(UART_HandleTypeDef *huart, uint8_t *pData, uint16_t Size, uint32_t Timeout);
+```
+So, in order to transmit the hello world, in this case, I use two separate function for transmit. Once is creating an unsigned integer 8 bit with the array msg which store the **world\n** and another is transmit **hello** is using in the funciton directly.
+
+```sh
+  /* USER CODE BEGIN 2 */
+  uint8_t msg[6] = "world\n";
+  /* USER CODE END 2 */
+  
+  while (1)
+  {  
+	HAL_UART_Transmit(&huart2, (uint8_t*)"hello", strlen("hello"), 100);
+	HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), 100);
+	HAL_Delay(1000);
+  }
+ ```
+
+## View the data (cutecom)
+
+cutecom is used to view the data on the computer, there are many application which you can also use to view it 
+
+
+![stm32F407VGT6](https://github.com/Theara-Seng/stm32_lab/blob/main/usart_polling/image/Serial.png)
+
+So, we can see **helloworld** data in the image above 
