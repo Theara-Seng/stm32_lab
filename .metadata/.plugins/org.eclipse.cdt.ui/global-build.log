@@ -1,34 +1,14 @@
-12:46:11 **** Incremental Build of configuration Debug for project uart_printf ****
+18:18:46 **** Incremental Build of configuration Debug for project can1 ****
 make -j20 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../USB_HOST/App -I../USB_HOST/Target -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Host_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Host_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function '_write':
-../Core/Src/main.c:53:29: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
-   53 |  HAL_UART_Transmit(&huart2, p, len, 10);
-      |                             ^
-      |                             |
-      |                             char *
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:406,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:722:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
-  722 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                                ~~~~~~~~~~~~~~~^~~~~
-arm-none-eabi-gcc -o "uart_printf.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/theara/Teaching/stm32_lab/uart_printf/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="uart_printf.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: uart_printf.elf
- 
-arm-none-eabi-size   uart_printf.elf 
-arm-none-eabi-objdump -h -S  uart_printf.elf  > "uart_printf.list"
+arm-none-eabi-size   can1.elf 
    text	   data	    bss	    dec	    hex	filename
-  48252	    516	   3660	  52428	   cccc	uart_printf.elf
+   7372	     20	   1644	   9036	   234c	can1.elf
 Finished building: default.size.stdout
  
-Finished building: uart_printf.list
- 
-12:46:26 **** Incremental Build of configuration Debug for project uart_printf ****
+18:18:47 **** Incremental Build of configuration Debug for project can1 ****
 make -j20 all 
-arm-none-eabi-size   uart_printf.elf 
+arm-none-eabi-size   can1.elf 
    text	   data	    bss	    dec	    hex	filename
-  48252	    516	   3660	  52428	   cccc	uart_printf.elf
+   7372	     20	   1644	   9036	   234c	can1.elf
 Finished building: default.size.stdout
  
