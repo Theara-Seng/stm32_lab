@@ -1,34 +1,36 @@
-11:41:28 **** Incremental Build of configuration Debug for project I2C_MPU6050 ****
+11:49:56 **** Incremental Build of configuration Debug for project usart_polling ****
 make -j20 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function '_write':
-../Core/Src/main.c:63:29: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
-   63 |  HAL_UART_Transmit(&huart2, p, len, 10);
-      |                             ^
-      |                             |
-      |                             char *
-In file included from ../Core/Inc/stm32f4xx_hal_conf.h:406,
-                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
-                 from ../Core/Inc/main.h:30,
-                 from ../Core/Src/main.c:20:
-../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:722:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
-  722 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
-      |                                                                ~~~~~~~~~~~~~~~^~~~~
-arm-none-eabi-gcc -o "I2C_MPU6050.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/theara/Teaching/stm32_lab/I2C_MPU6050/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="I2C_MPU6050.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: I2C_MPU6050.elf
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../USB_HOST/App -I../USB_HOST/Target -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Host_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Host_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:118:48: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  118 |  HAL_UART_Transmit(&huart2, (uint8_t*)"hello", strlen("hello"), 100);
+      |                                                ^~~~~~
+../Core/Src/main.c:118:48: warning: incompatible implicit declaration of built-in function 'strlen'
+../Core/Src/main.c:23:1: note: include '<string.h>' or provide a declaration of 'strlen'
+   22 | #include <stdio.h>
+  +++ |+#include <string.h>
+   23 | /* Private includes ----------------------------------------------------------*/
+../Core/Src/main.c:119:51: warning: pointer targets in passing argument 1 of 'strlen' differ in signedness [-Wpointer-sign]
+  119 |  HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), 100);
+      |                                                   ^~~
+      |                                                   |
+      |                                                   uint8_t * {aka unsigned char *}
+../Core/Src/main.c:119:51: note: expected 'const char *' but argument is of type 'uint8_t *' {aka 'unsigned char *'}
+arm-none-eabi-gcc -o "usart_polling.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/theara/Teaching/stm32_lab/usart_polling/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="usart_polling.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: usart_polling.elf
  
-arm-none-eabi-size   I2C_MPU6050.elf 
-arm-none-eabi-objdump -h -S  I2C_MPU6050.elf  > "I2C_MPU6050.list"
+arm-none-eabi-size   usart_polling.elf 
+arm-none-eabi-objdump -h -S  usart_polling.elf  > "usart_polling.list"
    text	   data	    bss	    dec	    hex	filename
-  32156	    484	   1924	  34564	   8704	I2C_MPU6050.elf
+  34128	    152	   3664	  37944	   9438	usart_polling.elf
 Finished building: default.size.stdout
  
-Finished building: I2C_MPU6050.list
+Finished building: usart_polling.list
  
-11:41:30 **** Incremental Build of configuration Debug for project I2C_MPU6050 ****
+11:49:58 **** Incremental Build of configuration Debug for project usart_polling ****
 make -j20 all 
-arm-none-eabi-size   I2C_MPU6050.elf 
+arm-none-eabi-size   usart_polling.elf 
    text	   data	    bss	    dec	    hex	filename
-  32156	    484	   1924	  34564	   8704	I2C_MPU6050.elf
+  34128	    152	   3664	  37944	   9438	usart_polling.elf
 Finished building: default.size.stdout
  

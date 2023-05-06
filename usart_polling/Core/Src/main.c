@@ -105,19 +105,17 @@ int main(void)
   MX_USB_HOST_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-
+  uint8_t msg[6] = "world\n";
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  uint8_t msg[6] = "world\n";
+
   while (1)
   {
     /* USER CODE END WHILE */
     MX_USB_HOST_Process();
-
 	HAL_UART_Transmit(&huart2, (uint8_t*)"hello", strlen("hello"), 100);
-	HAL_Delay(1000);
 	HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), 100);
 	HAL_Delay(1000);
 
