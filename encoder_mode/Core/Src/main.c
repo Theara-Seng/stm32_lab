@@ -132,11 +132,11 @@ int main(void)
     MX_USB_HOST_Process();
     uint32_t last_print = 0, now = 0;
 
-
+    long int count = (int)TIM2->CNT/4;
 
 	now = HAL_GetTick();
 	if (now - last_print >= 1000) {
-		printf("Encoder counter = %lu", TIM2->CNT);
+		printf("Encoder counter = %ld\n", count );
 		last_print = now;
 
 
