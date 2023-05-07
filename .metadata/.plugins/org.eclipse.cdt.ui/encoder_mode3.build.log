@@ -1,0 +1,10 @@
+18:49:41 **** Incremental Build of configuration Debug for project encoder_mode3 ****
+make -j20 all 
+arm-none-eabi-size   encoder_mode3.elf 
+   text	   data	    bss	    dec	    hex	filename
+  18864	    120	   1872	  20856	   5178	encoder_mode3.elf
+Finished building: default.size.stdout
+ 
+
+18:49:41 Build Finished. 0 errors, 0 warnings. (took 177ms)
+

@@ -1,21 +1,64 @@
-19:02:31 **** Incremental Build of configuration Debug for project can1 ****
+18:49:38 **** Incremental Build of configuration Debug for project encoder_mode3 ****
 make -j20 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103xB -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "can1.elf" @"objects.list"   -mcpu=cortex-m3 -T"/home/theara/Teaching/stm32_lab/can1/STM32F103C8TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="can1.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: can1.elf
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function '_write':
+../Core/Src/main.c:73:29: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+   73 |  HAL_UART_Transmit(&huart2, p, len, 10);
+      |                             ^
+      |                             |
+      |                             char *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:406,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:722:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+  722 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:153:6: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  153 |      printf("Encoder counter = %ld AND %ld\n", count, count1);
+      |      ^~~~~~
+../Core/Src/main.c:153:6: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/main.c:21:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   20 | #include "main.h"
+  +++ |+#include <stdio.h>
+   21 | 
+../Core/Src/main.c: In function 'HAL_GPIO_EXTI_Callback':
+../Core/Src/main.c:527:3: warning: incompatible implicit declaration of built-in function 'printf'
+  527 |   printf("rotation = %ld:%ld\n", rot_old_state, rot_new_state);
+      |   ^~~~~~
+../Core/Src/main.c:527:3: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/main.c:554:4: warning: incompatible implicit declaration of built-in function 'printf'
+  554 |    printf("rotation = %ld:%ld\n", rot_old_state1, rot_new_state1);
+      |    ^~~~~~
+../Core/Src/main.c:554:4: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/main.c:554:25: warning: format '%ld' expects argument of type 'long int', but argument 2 has type 'int' [-Wformat=]
+  554 |    printf("rotation = %ld:%ld\n", rot_old_state1, rot_new_state1);
+      |                       ~~^         ~~~~~~~~~~~~~~
+      |                         |         |
+      |                         long int  int
+      |                       %d
+../Core/Src/main.c:554:29: warning: format '%ld' expects argument of type 'long int', but argument 3 has type 'int' [-Wformat=]
+  554 |    printf("rotation = %ld:%ld\n", rot_old_state1, rot_new_state1);
+      |                           ~~^                     ~~~~~~~~~~~~~~
+      |                             |                     |
+      |                             long int              int
+      |                           %d
+arm-none-eabi-gcc -o "encoder_mode3.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/theara/Teaching/stm32_lab/encoder_mode3/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_mode3.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: encoder_mode3.elf
  
-arm-none-eabi-size   can1.elf 
-arm-none-eabi-objdump -h -S  can1.elf  > "can1.list"
+arm-none-eabi-size   encoder_mode3.elf 
+arm-none-eabi-objdump -h -S  encoder_mode3.elf  > "encoder_mode3.list"
    text	   data	    bss	    dec	    hex	filename
-   7388	     20	   1644	   9052	   235c	can1.elf
+  18864	    120	   1872	  20856	   5178	encoder_mode3.elf
 Finished building: default.size.stdout
  
-Finished building: can1.list
+Finished building: encoder_mode3.list
  
-19:02:34 **** Incremental Build of configuration Debug for project can1 ****
+18:49:41 **** Incremental Build of configuration Debug for project encoder_mode3 ****
 make -j20 all 
-arm-none-eabi-size   can1.elf 
+arm-none-eabi-size   encoder_mode3.elf 
    text	   data	    bss	    dec	    hex	filename
-   7388	     20	   1644	   9052	   235c	can1.elf
+  18864	    120	   1872	  20856	   5178	encoder_mode3.elf
 Finished building: default.size.stdout
  

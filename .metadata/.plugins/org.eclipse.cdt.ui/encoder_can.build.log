@@ -1,0 +1,10 @@
+11:40:13 **** Incremental Build of configuration Debug for project encoder_can ****
+make -j20 all 
+arm-none-eabi-size   encoder_can.elf 
+   text	   data	    bss	    dec	    hex	filename
+  12848	    120	   1840	  14808	   39d8	encoder_can.elf
+Finished building: default.size.stdout
+ 
+
+11:40:13 Build Finished. 0 errors, 0 warnings. (took 224ms)
+

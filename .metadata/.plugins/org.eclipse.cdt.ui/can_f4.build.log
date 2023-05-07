@@ -1,0 +1,10 @@
+18:41:53 **** Incremental Build of configuration Debug for project can_f4 ****
+make -j20 all 
+arm-none-eabi-size   can_f4.elf 
+   text	   data	    bss	    dec	    hex	filename
+  23840	    120	   2160	  26120	   6608	can_f4.elf
+Finished building: default.size.stdout
+ 
+
+18:41:53 Build Finished. 0 errors, 0 warnings. (took 175ms)
+
