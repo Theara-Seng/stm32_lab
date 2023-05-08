@@ -1,4 +1,4 @@
-18:49:38 **** Incremental Build of configuration Debug for project encoder_mode3 ****
+13:57:01 **** Incremental Build of configuration Debug for project can_receive ****
 make -j20 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 ../Core/Src/main.c: In function '_write':
@@ -14,51 +14,60 @@ In file included from ../Core/Inc/stm32f4xx_hal_conf.h:406,
 ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:722:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
   722 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
       |                                                                ~~~~~~~~~~~~~~~^~~~~
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:153:6: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
-  153 |      printf("Encoder counter = %ld AND %ld\n", count, count1);
-      |      ^~~~~~
-../Core/Src/main.c:153:6: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/main.c: In function 'HAL_CAN_RxFifo1MsgPendingCallback':
+../Core/Src/main.c:94:3: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+   94 |   printf("count %u and", cntt);
+      |   ^~~~~~
+../Core/Src/main.c:94:3: warning: incompatible implicit declaration of built-in function 'printf'
 ../Core/Src/main.c:21:1: note: include '<stdio.h>' or provide a declaration of 'printf'
    20 | #include "main.h"
   +++ |+#include <stdio.h>
    21 | 
-../Core/Src/main.c: In function 'HAL_GPIO_EXTI_Callback':
-../Core/Src/main.c:527:3: warning: incompatible implicit declaration of built-in function 'printf'
-  527 |   printf("rotation = %ld:%ld\n", rot_old_state, rot_new_state);
-      |   ^~~~~~
-../Core/Src/main.c:527:3: note: include '<stdio.h>' or provide a declaration of 'printf'
-../Core/Src/main.c:554:4: warning: incompatible implicit declaration of built-in function 'printf'
-  554 |    printf("rotation = %ld:%ld\n", rot_old_state1, rot_new_state1);
+../Core/Src/main.c:100:21: warning: format '%lu' expects argument of type 'long unsigned int', but argument 2 has type 'int' [-Wformat=]
+  100 |   printf("data0 = %lu and data1 = %lu \n",RxData[0], RxData[1]);
+      |                   ~~^                     ~~~~~~~~~
+      |                     |                           |
+      |                     long unsigned int           int
+      |                   %u
+../Core/Src/main.c:100:37: warning: format '%lu' expects argument of type 'long unsigned int', but argument 3 has type 'int' [-Wformat=]
+  100 |   printf("data0 = %lu and data1 = %lu \n",RxData[0], RxData[1]);
+      |                                   ~~^                ~~~~~~~~~
+      |                                     |                      |
+      |                                     long unsigned int      int
+      |                                   %u
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:181:29: warning: unused variable 'now' [-Wunused-variable]
+  181 |    uint32_t last_print = 0, now = 0;
+      |                             ^~~
+../Core/Src/main.c:181:13: warning: unused variable 'last_print' [-Wunused-variable]
+  181 |    uint32_t last_print = 0, now = 0;
+      |             ^~~~~~~~~~
+../Core/Src/main.c: In function 'MX_TIM5_Init':
+../Core/Src/main.c:385:4: warning: incompatible implicit declaration of built-in function 'printf'
+  385 |    printf(datacheck);
       |    ^~~~~~
-../Core/Src/main.c:554:4: note: include '<stdio.h>' or provide a declaration of 'printf'
-../Core/Src/main.c:554:25: warning: format '%ld' expects argument of type 'long int', but argument 2 has type 'int' [-Wformat=]
-  554 |    printf("rotation = %ld:%ld\n", rot_old_state1, rot_new_state1);
-      |                       ~~^         ~~~~~~~~~~~~~~
-      |                         |         |
-      |                         long int  int
-      |                       %d
-../Core/Src/main.c:554:29: warning: format '%ld' expects argument of type 'long int', but argument 3 has type 'int' [-Wformat=]
-  554 |    printf("rotation = %ld:%ld\n", rot_old_state1, rot_new_state1);
-      |                           ~~^                     ~~~~~~~~~~~~~~
-      |                             |                     |
-      |                             long int              int
-      |                           %d
-arm-none-eabi-gcc -o "encoder_mode3.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/theara/Teaching/stm32_lab/encoder_mode3/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="encoder_mode3.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: encoder_mode3.elf
+../Core/Src/main.c:385:4: note: include '<stdio.h>' or provide a declaration of 'printf'
+../Core/Src/main.c:385:11: warning: passing argument 1 of 'printf' makes pointer from integer without a cast [-Wint-conversion]
+  385 |    printf(datacheck);
+      |           ^~~~~~~~~
+      |           |
+      |           uint8_t {aka unsigned char}
+../Core/Src/main.c:385:11: note: expected 'const char *' but argument is of type 'uint8_t' {aka 'unsigned char'}
+arm-none-eabi-gcc -o "can_receive.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/theara/Teaching/stm32_lab/can_receive/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="can_receive.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: can_receive.elf
  
-arm-none-eabi-size   encoder_mode3.elf 
-arm-none-eabi-objdump -h -S  encoder_mode3.elf  > "encoder_mode3.list"
+arm-none-eabi-size   can_receive.elf 
+arm-none-eabi-objdump -h -S  can_receive.elf  > "can_receive.list"
    text	   data	    bss	    dec	    hex	filename
-  18864	    120	   1872	  20856	   5178	encoder_mode3.elf
+  19264	    120	   1912	  21296	   5330	can_receive.elf
 Finished building: default.size.stdout
  
-Finished building: encoder_mode3.list
+Finished building: can_receive.list
  
-18:49:41 **** Incremental Build of configuration Debug for project encoder_mode3 ****
+13:57:03 **** Incremental Build of configuration Debug for project can_receive ****
 make -j20 all 
-arm-none-eabi-size   encoder_mode3.elf 
+arm-none-eabi-size   can_receive.elf 
    text	   data	    bss	    dec	    hex	filename
-  18864	    120	   1872	  20856	   5178	encoder_mode3.elf
+  19264	    120	   1912	  21296	   5330	can_receive.elf
 Finished building: default.size.stdout
  
