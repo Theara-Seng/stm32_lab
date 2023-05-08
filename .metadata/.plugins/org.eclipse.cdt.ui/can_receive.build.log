@@ -1,10 +1,10 @@
-13:57:03 **** Incremental Build of configuration Debug for project can_receive ****
+16:57:19 **** Incremental Build of configuration Debug for project can_receive ****
 make -j20 all 
 arm-none-eabi-size   can_receive.elf 
    text	   data	    bss	    dec	    hex	filename
-  19264	    120	   1912	  21296	   5330	can_receive.elf
+  29804	    484	   1924	  32212	   7dd4	can_receive.elf
 Finished building: default.size.stdout
  
 
-13:57:03 Build Finished. 0 errors, 0 warnings. (took 172ms)
+16:57:19 Build Finished. 0 errors, 0 warnings. (took 171ms)
 

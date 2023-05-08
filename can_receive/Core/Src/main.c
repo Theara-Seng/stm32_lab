@@ -77,15 +77,23 @@ uint32_t _write(int file, char* p, int len){
 CAN_HandleTypeDef canfilterconfig;
 CAN_RxHeaderTypeDef RxHeader;
 CAN_TxHeaderTypeDef TxHeader;
-uint8_t RxData[8];
+unsigned char RxData[4];
 uint32_t txMailBox;
 //uint8_t canTx0Data[8];
 
-
+float V1 = 0.0;
+float V2 = 0.0;
 unsigned char TxData[4];
 uint8_t datacheck;
 uint8_t cntt = 0;
 
+long int data1 = 0;
+long int data2 = 0;
+float map(float Input, float Min_Input, float Max_Input, float Min_Output, float Max_Output)
+{
+
+	return (float)((Input - Min_Input) * ((Max_Output - Min_Output) / (Max_Input - Min_Input)) + Min_Output);
+}
 
 void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan2)
 {
@@ -97,7 +105,12 @@ void HAL_CAN_RxFifo1MsgPendingCallback(CAN_HandleTypeDef *hcan2)
   		HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_13);
   		cntt = 0;
   	}
-  printf("data0 = %lu and data1 = %lu \n",RxData[0], RxData[1]);
+  data1 = RxData[0]<<8  | RxData[1];
+  data2 = RxData[2]<< 8 | RxData[3];
+  printf("data0 = %ld and data1 = %ld \n",data1,data2);
+  V1 = map(data1,0,65535,-10,10);
+  V2 = map(data2,0,65535,-10,10);
+  printf("V1=%f and V2=%f\n",V1,V2);
 //  HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_13);
   if ((RxHeader.StdId == 0x111))
   {

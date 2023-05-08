@@ -17407,3 +17407,16 @@ Caused by: java.io.EOFException: SSL peer shut down incorrectly
 2023-05-08 13:27:02,854 [ERROR] ConfigurationRetriever:140 - IOException on connection: Remote host terminated the handshake
 2023-05-08 13:27:02,895 [ERROR] ConfigurationRetriever:140 - IOException on connection: Remote host terminated the handshake
 2023-05-08 13:27:02,934 [ERROR] ConfigurationRetriever:140 - IOException on connection: Remote host terminated the handshake
+2023-05-08 15:37:35,359 [INFO] NvicIntPanel:100 - NVIC parent = com.st.microxplorer.plugins.ip.nvic.MultiNvicIntPanel[,0,0,458x272,layout=javax.swing.BoxLayout,alignmentX=0.0,alignmentY=0.0,border=,flags=9,maximumSize=,minimumSize=,preferredSize=]
+2023-05-08 16:39:27,533 [ERROR] ConfigurationRetriever:140 - IOException on connection: Remote host terminated the handshake
+2023-05-08 16:39:27,573 [ERROR] ConfigurationRetriever:140 - IOException on connection: Remote host terminated the handshake
+2023-05-08 16:39:27,592 [ERROR] ConfigurationRetriever:140 - IOException on connection: Remote host terminated the handshake
+2023-05-08 16:39:39,250 [ERROR] ConfigurationRetriever:140 - IOException on connection: Remote host terminated the handshake
+2023-05-08 16:39:39,279 [ERROR] ConfigurationRetriever:140 - IOException on connection: Remote host terminated the handshake
+2023-05-08 16:39:39,316 [ERROR] ConfigurationRetriever:140 - IOException on connection: Remote host terminated the handshake
+2023-05-08 16:41:34,600 [ERROR] ConfigurationRetriever:140 - IOException on connection: Remote host terminated the handshake
+2023-05-08 16:41:34,618 [ERROR] ConfigurationRetriever:140 - IOException on connection: Remote host terminated the handshake
+2023-05-08 16:41:34,639 [ERROR] ConfigurationRetriever:140 - IOException on connection: Remote host terminated the handshake
+2023-05-08 16:41:35,728 [ERROR] ConfigurationRetriever:140 - IOException on connection: Remote host terminated the handshake
+2023-05-08 16:41:36,008 [ERROR] ConfigurationRetriever:140 - IOException on connection: Remote host terminated the handshake
+2023-05-08 16:41:36,330 [ERROR] ConfigurationRetriever:140 - IOException on connection: Remote host terminated the handshake

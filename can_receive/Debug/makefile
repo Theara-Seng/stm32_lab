@@ -61,7 +61,7 @@ main-build: can_receive.elf secondary-outputs
 
 # Tool invocations
 can_receive.elf can_receive.map: $(OBJS) $(USER_OBJS) /home/theara/Teaching/stm32_lab/can_receive/STM32F407VGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "can_receive.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/theara/Teaching/stm32_lab/can_receive/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="can_receive.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+	arm-none-eabi-gcc -o "can_receive.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"/home/theara/Teaching/stm32_lab/can_receive/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="can_receive.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
