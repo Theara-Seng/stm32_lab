@@ -189,7 +189,7 @@ int main(void)
 	  {
 	   HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_14);
 	  HAL_CAN_AddTxMessage(&hcan2, &TxHeader, TxData, &txMailBox);
-//	   HAL_Delay(1000);
+	   HAL_Delay(1000);
 	   datacheck =0;
 	  }
     /* USER CODE END WHILE */

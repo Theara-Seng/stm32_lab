@@ -183,19 +183,17 @@ int main(void)
 
   {
 //	  printf("Hello");
-	  TxData[0] = 0x03 ;
 	  HAL_GPIO_WritePin(GPIOD, GPIO_PIN_12, GPIO_PIN_SET);
-	  if (datacheck==1)
-	  {
-	   HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_14);
-	  HAL_CAN_AddTxMessage(&hcan2, &TxHeader, TxData, &txMailBox);
-//	   HAL_Delay(1000);
-	   datacheck =0;
-	  }
+	 			  if (datacheck==1)
+	 			  {
+	 			   HAL_GPIO_TogglePin(GPIOD, GPIO_PIN_14);
+	 			   HAL_Delay(1000);
+	 			   datacheck =0;
+	 			  }
     /* USER CODE END WHILE */
-//	  uint32_t last_print = 0, now = 0;
-//	  TxData[0] = 0x03 & 0x00ff;
-//	  now = HAL_GetTick();
+	  uint32_t last_print = 0, now = 0;
+	  TxData[0] = 0x03 & 0x00ff;
+//	now = HAL_GetTick();
 //
 //
 //		if (now - last_print >= 1000) {
