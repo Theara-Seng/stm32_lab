@@ -1,4 +1,4 @@
-14:48:53 **** Incremental Build of configuration Debug for project tim_interrupt ****
+15:24:12 **** Incremental Build of configuration Debug for project tim_interrupt ****
 make -j20 all 
 arm-none-eabi-gcc "../USB_HOST/Target/usbh_conf.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../USB_HOST/App -I../USB_HOST/Target -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Host_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Host_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"USB_HOST/Target/usbh_conf.d" -MT"USB_HOST/Target/usbh_conf.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "USB_HOST/Target/usbh_conf.o"
 arm-none-eabi-gcc "../USB_HOST/Target/usbh_platform.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../USB_HOST/App -I../USB_HOST/Target -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Middlewares/ST/STM32_USB_Host_Library/Core/Inc -I../Middlewares/ST/STM32_USB_Host_Library/Class/CDC/Inc -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"USB_HOST/Target/usbh_platform.d" -MT"USB_HOST/Target/usbh_platform.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "USB_HOST/Target/usbh_platform.o"
@@ -49,7 +49,7 @@ Finished building: default.size.stdout
  
 Finished building: tim_interrupt.list
  
-14:48:55 **** Incremental Build of configuration Debug for project tim_interrupt ****
+15:24:14 **** Incremental Build of configuration Debug for project tim_interrupt ****
 make -j20 all 
 arm-none-eabi-size   tim_interrupt.elf 
    text	   data	    bss	    dec	    hex	filename

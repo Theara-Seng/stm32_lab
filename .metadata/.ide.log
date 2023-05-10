@@ -18781,3 +18781,19 @@ Caused by: java.io.EOFException: SSL peer shut down incorrectly
 2023-05-10 14:49:49,787 [INFO] ProjectBuilder:4351 - Time for Generating toolchain IDE Files: 548mS.
 2023-05-10 14:49:49,788 [INFO] ProjectBuilder:2790 - Time for Copy CMSIS : 0mS.
 2023-05-10 14:49:49,788 [INFO] ProjectBuilder:2790 - Time for Copy CMSIS : 0mS.
+2023-05-10 15:17:54,704 [INFO] I2sManager:630 - 9.6E7
+2023-05-10 15:17:54,704 [INFO] I2sManager:183 - I2S Clock Value : 9.6E7
+2023-05-10 15:17:54,704 [INFO] I2sManager:524 - AudioClock : 93750Divider : 2Odd : 0
+2023-05-10 15:23:54,965 [INFO] I2sManager:630 - 9.6E7
+2023-05-10 15:23:54,965 [INFO] I2sManager:183 - I2S Clock Value : 9.6E7
+2023-05-10 15:23:54,966 [INFO] I2sManager:524 - AudioClock : 93750Divider : 2Odd : 0
+2023-05-10 15:24:16,333 [ERROR] ConfigurationRetriever:140 - IOException on connection: Read timed out
+2023-05-10 15:36:57,651 [INFO] I2sManager:630 - 9.6E7
+2023-05-10 15:36:57,651 [INFO] I2sManager:183 - I2S Clock Value : 9.6E7
+2023-05-10 15:36:57,651 [INFO] I2sManager:524 - AudioClock : 93750Divider : 2Odd : 0
+2023-05-10 15:37:06,217 [INFO] I2sManager:630 - 9.6E7
+2023-05-10 15:37:06,217 [INFO] I2sManager:183 - I2S Clock Value : 9.6E7
+2023-05-10 15:37:06,217 [INFO] I2sManager:524 - AudioClock : 93750Divider : 2Odd : 0
+2023-05-10 15:37:18,693 [INFO] I2sManager:630 - 9.6E7
+2023-05-10 15:37:18,694 [INFO] I2sManager:183 - I2S Clock Value : 9.6E7
+2023-05-10 15:37:18,694 [INFO] I2sManager:524 - AudioClock : 93750Divider : 2Odd : 0
