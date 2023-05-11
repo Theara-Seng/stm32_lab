@@ -358,104 +358,104 @@ static void MX_I2S3_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_TIM6_Init(void);
 /* USER CODE BEGIN PFP */
-void delay(uint16_t delays){
+void delay(uint32_t delays){
  80004cc:	b480      	push	{r7}
  80004ce:	b085      	sub	sp, #20
  80004d0:	af00      	add	r7, sp, #0
- 80004d2:	4603      	mov	r3, r0
- 80004d4:	80fb      	strh	r3, [r7, #6]
-	for (uint16_t i =1; i<=delays; i++){
- 80004d6:	2301      	movs	r3, #1
- 80004d8:	81fb      	strh	r3, [r7, #14]
- 80004da:	e00b      	b.n	80004f4 <delay+0x28>
+ 80004d2:	6078      	str	r0, [r7, #4]
+	for (uint32_t i =1; i<=delays; i++){
+ 80004d4:	2301      	movs	r3, #1
+ 80004d6:	60fb      	str	r3, [r7, #12]
+ 80004d8:	e00b      	b.n	80004f2 <delay+0x26>
 		uint16_t start = TIM6->CNT;
- 80004dc:	4b0b      	ldr	r3, [pc, #44]	; (800050c <delay+0x40>)
- 80004de:	6a5b      	ldr	r3, [r3, #36]	; 0x24
- 80004e0:	81bb      	strh	r3, [r7, #12]
+ 80004da:	4b0b      	ldr	r3, [pc, #44]	; (8000508 <delay+0x3c>)
+ 80004dc:	6a5b      	ldr	r3, [r3, #36]	; 0x24
+ 80004de:	817b      	strh	r3, [r7, #10]
 		while((TIM6->CNT - start)< 1);
- 80004e2:	bf00      	nop
- 80004e4:	4b09      	ldr	r3, [pc, #36]	; (800050c <delay+0x40>)
- 80004e6:	6a5a      	ldr	r2, [r3, #36]	; 0x24
- 80004e8:	89bb      	ldrh	r3, [r7, #12]
- 80004ea:	429a      	cmp	r2, r3
- 80004ec:	d0fa      	beq.n	80004e4 <delay+0x18>
-	for (uint16_t i =1; i<=delays; i++){
- 80004ee:	89fb      	ldrh	r3, [r7, #14]
- 80004f0:	3301      	adds	r3, #1
- 80004f2:	81fb      	strh	r3, [r7, #14]
- 80004f4:	89fa      	ldrh	r2, [r7, #14]
- 80004f6:	88fb      	ldrh	r3, [r7, #6]
- 80004f8:	429a      	cmp	r2, r3
- 80004fa:	d9ef      	bls.n	80004dc <delay+0x10>
+ 80004e0:	bf00      	nop
+ 80004e2:	4b09      	ldr	r3, [pc, #36]	; (8000508 <delay+0x3c>)
+ 80004e4:	6a5a      	ldr	r2, [r3, #36]	; 0x24
+ 80004e6:	897b      	ldrh	r3, [r7, #10]
+ 80004e8:	429a      	cmp	r2, r3
+ 80004ea:	d0fa      	beq.n	80004e2 <delay+0x16>
+	for (uint32_t i =1; i<=delays; i++){
+ 80004ec:	68fb      	ldr	r3, [r7, #12]
+ 80004ee:	3301      	adds	r3, #1
+ 80004f0:	60fb      	str	r3, [r7, #12]
+ 80004f2:	68fa      	ldr	r2, [r7, #12]
+ 80004f4:	687b      	ldr	r3, [r7, #4]
+ 80004f6:	429a      	cmp	r2, r3
+ 80004f8:	d9ef      	bls.n	80004da <delay+0xe>
 	}
 }
+ 80004fa:	bf00      	nop
  80004fc:	bf00      	nop
- 80004fe:	bf00      	nop
- 8000500:	3714      	adds	r7, #20
- 8000502:	46bd      	mov	sp, r7
- 8000504:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8000508:	4770      	bx	lr
- 800050a:	bf00      	nop
- 800050c:	40001000 	.word	0x40001000
+ 80004fe:	3714      	adds	r7, #20
+ 8000500:	46bd      	mov	sp, r7
+ 8000502:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000506:	4770      	bx	lr
+ 8000508:	40001000 	.word	0x40001000
 
-08000510 <main>:
+0800050c <main>:
 /**
   * @brief  The application entry point.
   * @retval int
   */
 int main(void)
 {
- 8000510:	b580      	push	{r7, lr}
- 8000512:	af00      	add	r7, sp, #0
+ 800050c:	b580      	push	{r7, lr}
+ 800050e:	af00      	add	r7, sp, #0
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
- 8000514:	f000 fc44 	bl	8000da0 <HAL_Init>
+ 8000510:	f000 fc46 	bl	8000da0 <HAL_Init>
   /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
 
   /* Configure the system clock */
   SystemClock_Config();
- 8000518:	f000 f81a 	bl	8000550 <SystemClock_Config>
+ 8000514:	f000 f81c 	bl	8000550 <SystemClock_Config>
   /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
- 800051c:	f000 f94c 	bl	80007b8 <MX_GPIO_Init>
+ 8000518:	f000 f94e 	bl	80007b8 <MX_GPIO_Init>
   MX_I2C1_Init();
- 8000520:	f000 f880 	bl	8000624 <MX_I2C1_Init>
+ 800051c:	f000 f882 	bl	8000624 <MX_I2C1_Init>
   MX_I2S3_Init();
- 8000524:	f000 f8ac 	bl	8000680 <MX_I2S3_Init>
+ 8000520:	f000 f8ae 	bl	8000680 <MX_I2S3_Init>
   MX_SPI1_Init();
- 8000528:	f000 f8da 	bl	80006e0 <MX_SPI1_Init>
+ 8000524:	f000 f8dc 	bl	80006e0 <MX_SPI1_Init>
   MX_TIM6_Init();
- 800052c:	f000 f90e 	bl	800074c <MX_TIM6_Init>
+ 8000528:	f000 f910 	bl	800074c <MX_TIM6_Init>
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start(&htim6);
- 8000530:	4805      	ldr	r0, [pc, #20]	; (8000548 <main+0x38>)
- 8000532:	f002 fbdd 	bl	8002cf0 <HAL_TIM_Base_Start>
+ 800052c:	4805      	ldr	r0, [pc, #20]	; (8000544 <main+0x38>)
+ 800052e:	f002 fbdf 	bl	8002cf0 <HAL_TIM_Base_Start>
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
 	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_1);
- 8000536:	2102      	movs	r1, #2
- 8000538:	4804      	ldr	r0, [pc, #16]	; (800054c <main+0x3c>)
- 800053a:	f000 ff3e 	bl	80013ba <HAL_GPIO_TogglePin>
-	  delay(18000);
- 800053e:	f244 6050 	movw	r0, #18000	; 0x4650
- 8000542:	f7ff ffc3 	bl	80004cc <delay>
+ 8000532:	2102      	movs	r1, #2
+ 8000534:	4804      	ldr	r0, [pc, #16]	; (8000548 <main+0x3c>)
+ 8000536:	f000 ff40 	bl	80013ba <HAL_GPIO_TogglePin>
+	  delay(1000000);
+ 800053a:	4804      	ldr	r0, [pc, #16]	; (800054c <main+0x40>)
+ 800053c:	f7ff ffc6 	bl	80004cc <delay>
 	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_1);
- 8000546:	e7f6      	b.n	8000536 <main+0x26>
- 8000548:	2000011c 	.word	0x2000011c
- 800054c:	40020000 	.word	0x40020000
+ 8000540:	e7f7      	b.n	8000532 <main+0x26>
+ 8000542:	bf00      	nop
+ 8000544:	2000011c 	.word	0x2000011c
+ 8000548:	40020000 	.word	0x40020000
+ 800054c:	000f4240 	.word	0x000f4240
 
 08000550 <SystemClock_Config>:
 /**
@@ -2010,7 +2010,7 @@ LoopFillZerobss:
  8000d7a:	f002 f93d 	bl	8002ff8 <__libc_init_array>
 /* Call the application's entry point.*/
   bl  main
- 8000d7e:	f7ff fbc7 	bl	8000510 <main>
+ 8000d7e:	f7ff fbc5 	bl	800050c <main>
   bx  lr    
  8000d82:	4770      	bx	lr
   ldr   sp, =_estack     /* set stack pointer */

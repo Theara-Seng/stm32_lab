@@ -3562,10 +3562,10 @@ LOAD /opt/st/stm32cubeide_1.11.0/plugins/com.st.stm32cube.ide.mcu.externaltools.
                 0x00000000080004c8                __aeabi_ldiv0
                 0x00000000080004c8                __aeabi_idiv0
  *(.text*)
- .text.delay    0x00000000080004cc       0x44 ./Core/Src/main.o
+ .text.delay    0x00000000080004cc       0x40 ./Core/Src/main.o
                 0x00000000080004cc                delay
- .text.main     0x0000000008000510       0x40 ./Core/Src/main.o
-                0x0000000008000510                main
+ .text.main     0x000000000800050c       0x44 ./Core/Src/main.o
+                0x000000000800050c                main
  .text.SystemClock_Config
                 0x0000000008000550       0xd4 ./Core/Src/main.o
                 0x0000000008000550                SystemClock_Config
