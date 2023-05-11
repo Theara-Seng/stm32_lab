@@ -76,10 +76,10 @@ int _write(int file, char* p, int len){
 	return len;
 
 }
-uint32_t IC_Val1 = 0;
-uint32_t IC_Val2 = 0;
-uint32_t Difference = 0;
-int Is_First_Captured = 0;
+uint32_t cap0 = 0;
+uint32_t cap1 = 0;
+uint32_t diff = 0;
+uint8_t is_capture = 0;
 
 /* Measure Frequency */
 float frequency = 0;
@@ -88,33 +88,33 @@ void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim)
 {
 	if (htim->Channel == HAL_TIM_ACTIVE_CHANNEL_1)
 	{
-		if (Is_First_Captured==0)
+		if (is_capture==0)
 		{
-			IC_Val1 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
-			Is_First_Captured = 1;
+			cap0 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
+			is_capture = 1;
 		}
 
 		else
 		{
-			IC_Val2 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
+			cap1 = HAL_TIM_ReadCapturedValue(htim, TIM_CHANNEL_1);
 
-			if (IC_Val2 > IC_Val1)
+			if (cap1 > cap0)
 			{
-				Difference = IC_Val2-IC_Val1;
+				diff = cap1-cap0;
 			}
 
-			else if (IC_Val1 > IC_Val2)
+			else if (cap0 > cap1)
 			{
-				Difference = (0xffffffff - IC_Val1) + IC_Val2;
+				diff = (0xffffffff - cap0) + cap1;
 			}
 
-			float refClock = TIMCLOCK/(PRESCALAR);
+			frequency = HAL_RCC_GetPCLK2Freq()/(htim2.Instance->PSC + 1);
 
-			frequency = refClock/Difference;
+			frequency = frequency/diff;
 
 
 			__HAL_TIM_SET_COUNTER(htim, 0);  // reset the counter
-			Is_First_Captured = 0; // set it back to false
+			is_capture = 0; // set it back to false
 		}
 	}
 }
