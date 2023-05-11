@@ -39,8 +39,8 @@ So, we can write
  Then we can create a Delay function count from 1us up to any second
  
  ```sh 
-void delay(uint16_t delays){
-	for (uint16_t i =1; i<=delays; i++){
+void delay(uint32_t delays){
+	for (uint32_t i =1; i<=delays; i++){
 		uint16_t start = TIM6->CNT;
 		while((TIM6->CNT - start)< 1);
 	}
