@@ -1,10 +1,10 @@
-11:02:01 **** Incremental Build of configuration Debug for project tim_polling_us ****
+12:47:55 **** Incremental Build of configuration Debug for project tim_polling_us ****
 make -j20 all 
 arm-none-eabi-size   tim_polling_us.elf 
    text	   data	    bss	    dec	    hex	filename
-  12408	     20	   1884	  14312	   37e8	tim_polling_us.elf
+  12424	     20	   1884	  14328	   37f8	tim_polling_us.elf
 Finished building: default.size.stdout
  
 
-11:02:01 Build Finished. 0 errors, 0 warnings. (took 224ms)
+12:47:55 Build Finished. 0 errors, 0 warnings. (took 176ms)
 

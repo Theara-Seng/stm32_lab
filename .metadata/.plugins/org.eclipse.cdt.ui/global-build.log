@@ -1,21 +1,43 @@
-11:02:00 **** Incremental Build of configuration Debug for project tim_polling_us ****
+12:59:20 **** Incremental Build of configuration Debug for project DHT11 ****
 make -j20 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F407xx -c -I../Core/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc -I../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "tim_polling_us.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/theara/Teaching/stm32_lab/tim_polling_us/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="tim_polling_us.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: tim_polling_us.elf
+../Core/Src/main.c: In function '_write':
+../Core/Src/main.c:74:29: warning: pointer targets in passing argument 2 of 'HAL_UART_Transmit' differ in signedness [-Wpointer-sign]
+   74 |  HAL_UART_Transmit(&huart2, p, len, 10);
+      |                             ^
+      |                             |
+      |                             char *
+In file included from ../Core/Inc/stm32f4xx_hal_conf.h:406,
+                 from ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h:722:79: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'char *'
+  722 | HAL_StatusTypeDef HAL_UART_Transmit(UART_HandleTypeDef *huart, const uint8_t *pData, uint16_t Size, uint32_t Timeout);
+      |                                                                ~~~~~~~~~~~~~~~^~~~~
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:205:4: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
+  205 |    printf("The temperature is %f\n", Temperature);
+      |    ^~~~~~
+../Core/Src/main.c:205:4: warning: incompatible implicit declaration of built-in function 'printf'
+../Core/Src/main.c:21:1: note: include '<stdio.h>' or provide a declaration of 'printf'
+   20 | #include "main.h"
+  +++ |+#include <stdio.h>
+   21 | 
+arm-none-eabi-gcc -o "DHT11.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/theara/Teaching/stm32_lab/DHT11/STM32F407VGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DHT11.map" -Wl,--gc-sections -static -u _printf_float --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: DHT11.elf
  
-arm-none-eabi-size   tim_polling_us.elf 
-arm-none-eabi-objdump -h -S  tim_polling_us.elf  > "tim_polling_us.list"
+arm-none-eabi-size   DHT11.elf 
+arm-none-eabi-objdump -h -S  DHT11.elf  > "DHT11.list"
    text	   data	    bss	    dec	    hex	filename
-  12408	     20	   1884	  14312	   37e8	tim_polling_us.elf
+  26692	    484	   1916	  29092	   71a4	DHT11.elf
 Finished building: default.size.stdout
  
-Finished building: tim_polling_us.list
+Finished building: DHT11.list
  
-11:02:01 **** Incremental Build of configuration Debug for project tim_polling_us ****
+12:59:22 **** Incremental Build of configuration Debug for project DHT11 ****
 make -j20 all 
-arm-none-eabi-size   tim_polling_us.elf 
+arm-none-eabi-size   DHT11.elf 
    text	   data	    bss	    dec	    hex	filename
-  12408	     20	   1884	  14312	   37e8	tim_polling_us.elf
+  26692	    484	   1916	  29092	   71a4	DHT11.elf
 Finished building: default.size.stdout
  

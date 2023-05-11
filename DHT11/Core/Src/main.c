@@ -41,8 +41,6 @@
 /* Private variables ---------------------------------------------------------*/
 I2C_HandleTypeDef hi2c1;
 
-I2S_HandleTypeDef hi2s3;
-
 SPI_HandleTypeDef hspi1;
 
 TIM_HandleTypeDef htim6;
@@ -57,7 +55,6 @@ UART_HandleTypeDef huart2;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_I2C1_Init(void);
-static void MX_I2S3_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_TIM6_Init(void);
 static void MX_USART2_UART_Init(void);
@@ -67,11 +64,17 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void delay(uint16_t time){
-	__HAL_TIM_SET_COUNTER(&htim6, 0);
-	while ((__HAL_TIM_GET_COUNTER(&htim6))<<time);
+void delay(uint16_t delays){
+	for (uint16_t i =1; i<=delays; i++){
+		uint16_t start = TIM6->CNT;
+		while((TIM6->CNT - start)< 1);
+	}
 }
-uint8_t Rh_byte1, Rh_byte2, Temp_byte1, Temp_byte2;
+int _write(int file, char* p, int len){
+	HAL_UART_Transmit(&huart2, p, len, 10);
+	return len;
+}
+uint8_t Rh_byte1, Rh_byte2, Temp_byte1, Temp_byte2, sum;
 uint16_t SUM, RH, TEMP;
 
 float Temperature = 0;
@@ -83,7 +86,6 @@ void Set_Pin_Output (GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)
 	GPIO_InitTypeDef GPIO_InitStruct = {0};
 	GPIO_InitStruct.Pin = GPIO_Pin;
 	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-	GPIO_InitStruct.Pull = GPIO_PULLUP;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
 	HAL_GPIO_Init(GPIOx, &GPIO_InitStruct);
 }
@@ -93,7 +95,7 @@ void Set_Pin_Input (GPIO_TypeDef *GPIOx, uint16_t GPIO_Pin)
 	GPIO_InitTypeDef GPIO_InitStruct = {0};
 	GPIO_InitStruct.Pin = GPIO_Pin;
 	GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-	GPIO_InitStruct.Pull = GPIO_PULLUP;
+	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	HAL_GPIO_Init(GPIOx, &GPIO_InitStruct);
 }
 #define DHT11_PORT GPIOA
@@ -103,9 +105,9 @@ void DHT11_Start (void)
 {
 	Set_Pin_Output(DHT11_PORT, DHT11_PIN);  // set the pin as output
 	   // pull the pin low
-	HAL_GPIO_WritePin(DHT11_PORT, DHT11_PIN, 0);
-	delay(1500);   // wait for 18ms
-    HAL_GPIO_WritePin(DHT11_PORT, DHT11_PIN, 1);   // pull the pin high
+	HAL_GPIO_WritePin(DHT11_PORT, DHT11_PIN, GPIO_PIN_RESET);
+	delay(18000);   // wait for 18ms
+    HAL_GPIO_WritePin(DHT11_PORT, DHT11_PIN, GPIO_PIN_SET);   // pull the pin high
 	delay(20);   // wait for 20us
 	Set_Pin_Input(DHT11_PORT, DHT11_PIN);    // set as input
 }
@@ -128,18 +130,21 @@ uint8_t DHT11_Check_Response (void)
 uint8_t DHT11_Read (void)
 {
 	uint8_t i,j;
-	for (j=0;j<8;j++)
+	for (i=0;i<8;i++)
 	{
 		while (!(HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN)));   // wait for the pin to go high
 		delay (40);   // wait for 40 us
-		if (!(HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN)))   // if the pin is low
+		if ((HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN)))   // if the pin is low
 		{
-			i&= ~(1<<(7-j));   // write 0
+			j = j<<1 | 0x01;   // write 1
 		}
-		else i|= (1<<(7-j));  // if the pin is high, write 1
+		else {
+			j = j<<1;
+			// if the pin is high, write 0
+		}
 		while ((HAL_GPIO_ReadPin (DHT11_PORT, DHT11_PIN)));  // wait for the pin to go low
 	}
-	return i;
+	return j;
 }
 /* USER CODE END 0 */
 
@@ -172,7 +177,6 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C1_Init();
-  MX_I2S3_Init();
   MX_SPI1_Init();
   MX_TIM6_Init();
   MX_USART2_UART_Init();
@@ -180,27 +184,29 @@ int main(void)
   HAL_TIM_Base_Start(&htim6);
   //uint8_t res;
   /* USER CODE END 2 */
-  HAL_Delay(2000);
+
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
     /* USER CODE END WHILE */
+//	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_1);
+//	  delay(10);
 	  DHT11_Start();
-		  Presence = DHT11_Check_Response();
-		  Rh_byte1 = DHT11_Read ();
-		  Rh_byte2 = DHT11_Read ();
-		  Temp_byte1 = DHT11_Read ();
-		  Temp_byte2 = DHT11_Read ();
-		  SUM = DHT11_Read();
+	  Presence = DHT11_Check_Response();
+	  Rh_byte1 = DHT11_Read();
+	  Rh_byte2 = DHT11_Read();
+	  Temp_byte1 = DHT11_Read();
+	  Temp_byte2 = DHT11_Read();
+	  sum = DHT11_Read();
 
-		  TEMP = Temp_byte1;
-		  RH = Rh_byte1;
+	  Temperature = (float)Temp_byte1;
+	  printf("The temperature is %f\n", Temperature);
 
-		  Temperature = (float) TEMP;
-		  Humidity = (float) RH;
+	  HAL_Delay(1000);
     /* USER CODE BEGIN 3 */
-		  HAL_Delay(2000);
+//		  HAL_Delay(2000);
   }
   /* USER CODE END 3 */
 }
@@ -285,40 +291,6 @@ static void MX_I2C1_Init(void)
 }
 
 /**
-  * @brief I2S3 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_I2S3_Init(void)
-{
-
-  /* USER CODE BEGIN I2S3_Init 0 */
-
-  /* USER CODE END I2S3_Init 0 */
-
-  /* USER CODE BEGIN I2S3_Init 1 */
-
-  /* USER CODE END I2S3_Init 1 */
-  hi2s3.Instance = SPI3;
-  hi2s3.Init.Mode = I2S_MODE_MASTER_TX;
-  hi2s3.Init.Standard = I2S_STANDARD_PHILIPS;
-  hi2s3.Init.DataFormat = I2S_DATAFORMAT_16B;
-  hi2s3.Init.MCLKOutput = I2S_MCLKOUTPUT_ENABLE;
-  hi2s3.Init.AudioFreq = I2S_AUDIOFREQ_96K;
-  hi2s3.Init.CPOL = I2S_CPOL_LOW;
-  hi2s3.Init.ClockSource = I2S_CLOCK_PLL;
-  hi2s3.Init.FullDuplexMode = I2S_FULLDUPLEXMODE_DISABLE;
-  if (HAL_I2S_Init(&hi2s3) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN I2S3_Init 2 */
-
-  /* USER CODE END I2S3_Init 2 */
-
-}
-
-/**
   * @brief SPI1 Initialization Function
   * @param None
   * @retval None
@@ -374,7 +346,7 @@ static void MX_TIM6_Init(void)
 
   /* USER CODE END TIM6_Init 1 */
   htim6.Instance = TIM6;
-  htim6.Init.Prescaler = 0;
+  htim6.Init.Prescaler = 84-1;
   htim6.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim6.Init.Period = 65535;
   htim6.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
@@ -451,11 +423,11 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(OTG_FS_PowerSwitchOn_GPIO_Port, OTG_FS_PowerSwitchOn_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOD, LD4_Pin|LD3_Pin|LD5_Pin|LD6_Pin
-                          |Audio_RST_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_1|GPIO_PIN_8, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOD, LD4_Pin|LD3_Pin|LD5_Pin|LD6_Pin
+                          |Audio_RST_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : CS_I2C_SPI_Pin */
   GPIO_InitStruct.Pin = CS_I2C_SPI_Pin;
@@ -485,6 +457,21 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
+  /*Configure GPIO pins : PA1 PA8 */
+  GPIO_InitStruct.Pin = GPIO_PIN_1|GPIO_PIN_8;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : I2S3_WS_Pin */
+  GPIO_InitStruct.Pin = I2S3_WS_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  GPIO_InitStruct.Alternate = GPIO_AF6_SPI3;
+  HAL_GPIO_Init(I2S3_WS_GPIO_Port, &GPIO_InitStruct);
+
   /*Configure GPIO pin : BOOT1_Pin */
   GPIO_InitStruct.Pin = BOOT1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
@@ -508,12 +495,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PA8 */
-  GPIO_InitStruct.Pin = GPIO_PIN_1;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  /*Configure GPIO pins : I2S3_MCK_Pin I2S3_SCK_Pin I2S3_SD_Pin */
+  GPIO_InitStruct.Pin = I2S3_MCK_Pin|I2S3_SCK_Pin|I2S3_SD_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  GPIO_InitStruct.Alternate = GPIO_AF6_SPI3;
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pin : VBUS_FS_Pin */
   GPIO_InitStruct.Pin = VBUS_FS_Pin;

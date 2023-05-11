@@ -59,9 +59,11 @@ static void MX_I2S3_Init(void);
 static void MX_SPI1_Init(void);
 static void MX_TIM6_Init(void);
 /* USER CODE BEGIN PFP */
-void delay(uint16_t us){
-	uint16_t start = TIM6->CNT;
-	while((TIM6->CNT - start)< us);
+void delay(uint16_t delays){
+	for (uint16_t i =1; i<=delays; i++){
+		uint16_t start = TIM6->CNT;
+		while((TIM6->CNT - start)< 1);
+	}
 }
 /* USER CODE END PFP */
 
@@ -112,7 +114,7 @@ int main(void)
   {
     /* USER CODE END WHILE */
 	  HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_1);
-	  delay(1000);
+	  delay(18000);
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
